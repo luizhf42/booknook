@@ -2,7 +2,11 @@
 module.exports = {
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        merriweather: "'Merriweather Sans', sans-serif"
+      }
+    },
   },
   plugins: [],
 }
