@@ -10,5 +10,8 @@
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.4.1",
     "nuxt": "^3.2.3"
+  },
+  "dependencies": {
+    "vue3-google-login": "^2.0.15"
   }
 }
