@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
-  theme: {
-    extend: {
-      fontFamily: {
-        merriweather: "'Merriweather Sans', sans-serif"
-      }
-    },
-  },
-  plugins: [],
-}
+	content: [],
+	theme: {
+		extend: {
+			fontFamily: {
+				sans: ["Anuphan", "sans-serif"],
+			},
+		},
+	},
+	plugins: [],
+};

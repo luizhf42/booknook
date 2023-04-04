@@ -12,7 +12,7 @@ export default defineNuxtConfig({
 				},
 				{
 					rel: "stylesheet",
-					href: "https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&display=swap",
+					href: "https://fonts.googleapis.com/css2?family=Anuphan:wght@400;600;700&display=swap",
 				},
 			],
 		},
