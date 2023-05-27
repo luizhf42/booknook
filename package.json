@@ -12,6 +12,8 @@
     "nuxt": "^3.2.3"
   },
   "dependencies": {
+    "@types/uuid": "^9.0.1",
+    "uuid": "^9.0.0",
     "vue3-google-login": "^2.0.15"
   }
 }
