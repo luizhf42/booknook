@@ -1,7 +1,7 @@
 <template>
 	<main>
-		<h1>Discover. Share. Connect.</h1>
-		<h2>Have your own booknook.</h2>
+		<h1>BookNook</h1>
+		<h2>Where books unite people.</h2>
 
 		<GoogleLogin
 			clientId="1030391838378-6ohfffk4poldo1f08192q5unvsg6ih26.apps.googleusercontent.com"
@@ -29,9 +29,7 @@ interface UserData {
 const showCreateAccount = ref(false);
 const userData = ref<UserData>({ sub: "", name: "", picture: "" });
 const callback = async (response: { credential: string }) => {
-	userData.value = decodeCredential(response.credential) as UserData;
-	console.log(userData.value);
-	
+	userData.value = decodeCredential(response.credential) as UserData;	
 	if (await userExists(userData.value.sub)) navigateTo("/dashboard");
 	else showCreateAccount.value = true;
 };
