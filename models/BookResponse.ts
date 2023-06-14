@@ -1,4 +1,4 @@
-type Book = {
+type BookResponse = {
 	volumeInfo: {
 		title: string;
 		authors: string[];
@@ -32,7 +32,7 @@ type Book = {
 	};
 };
 
-type VolumeInfo = Book["volumeInfo"];
-type SaleInfo = Book["saleInfo"];
+type VolumeInfo = BookResponse["volumeInfo"];
+type SaleInfo = BookResponse["saleInfo"];
 
-export { Book, VolumeInfo, SaleInfo };
+export { BookResponse, VolumeInfo, SaleInfo };
