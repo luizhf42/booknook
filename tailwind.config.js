@@ -4,7 +4,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ["Anuphan", "sans-serif"],
+				sans: ["Outfit", "sans-serif"],
 			},
 		},
 	},
