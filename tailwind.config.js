@@ -6,6 +6,9 @@ module.exports = {
 			fontFamily: {
 				sans: ["Outfit", "sans-serif"],
 			},
+			colors: {
+				"brown-bg": "#A86114",
+			},
 		},
 	},
 	plugins: [],

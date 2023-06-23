@@ -58,7 +58,7 @@ const createAccount = async (username: string) => {
 
 <style lang="postcss" scoped>
 main {
-	@apply bg-[#A86114] text-white h-full flex flex-col items-center justify-center;
+	@apply bg-brown-bg text-white h-full flex flex-col items-center justify-center;
 
 	h1 {
 		@apply text-6xl font-bold;
