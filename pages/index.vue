@@ -10,7 +10,7 @@
 
 		<CreateAccount
 			v-if="showCreateAccount"
-			@create-account="(username) => createAccount(username)"
+			@create-account="(username = '') => createAccount(username)"
 			@cancel="() => (showCreateAccount = false)"
 		/>
 	</main>
