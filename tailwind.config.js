@@ -8,6 +8,8 @@ module.exports = {
 			},
 			colors: {
 				"brown-bg": "#A86114",
+				"thumb-up": "#33cd10",
+				"thumb-down": "#cd1010",
 			},
 		},
 	},
