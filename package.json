@@ -12,10 +12,15 @@
     "nuxt": "^3.2.3"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
     "@types/uuid": "^9.0.1",
     "country-list": "^2.3.0",
+    "pinia": "^2.1.4",
     "uuid": "^9.0.0",
     "vue-material-design-icons": "^5.2.0",
     "vue3-google-login": "^2.0.15"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
