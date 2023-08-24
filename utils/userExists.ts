@@ -1,11 +1,12 @@
-export const userExists = async (id: string | number) => {
-	let userExists: boolean = false;
-	try {
-		const { data } = await useFetch(`http://localhost:8080/users/${id}`);
-		userExists = !!data.value;
-	} catch (error) {
-		throw new Error(error as string);
-	}
+import {fetchUserInfo} from "~/utils/fetchUserInfo";
 
-	return userExists;
+export const userExists = async (id: string) => {
+    let userExists: boolean = false;
+    try {
+        const user = await fetchUserInfo(id);
+        userExists = !!user;
+    } catch (error) {
+        throw new Error(error as string);
+    }
+    return userExists;
 };
