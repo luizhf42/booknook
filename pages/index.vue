@@ -20,9 +20,8 @@
 import {decodeCredential, GoogleLogin} from "vue3-google-login";
 import {useUserStore} from "~/store/user";
 import {storeToRefs} from "pinia";
-import {GoogleUserData, User} from "~/models/User";
+import {GoogleUserData} from "~/models/User";
 // import { v4 as getUUID } from "uuid";
-
 
 const showCreateAccount = ref(false);
 const googleUserData = ref<GoogleUserData>();
@@ -41,7 +40,7 @@ const callback = async (response: { credential: string }) => {
 const createAccount = async (username: string) => {
   const {id, name, picture} = user.value!;
   try {
-    const {data, error} = await useFetch(
+    const {error} = await useFetch(
         "http://localhost:8080/users/create",
         {
           method: "POST",
@@ -50,6 +49,7 @@ const createAccount = async (username: string) => {
     );
 
     if (error.value) {
+      // TODO: Handle error
       throw new Error(error.value.stack);
     }
 
