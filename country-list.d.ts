@@ -1,1 +1,1 @@
-declare module 'country-list'
+declare module "country-list";

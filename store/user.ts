@@ -1,13 +1,13 @@
-import {defineStore} from 'pinia';
-import {fetchUserInfo} from "~/utils/fetchUserInfo";
-import {User} from "~/models/User";
+import { defineStore } from "pinia";
+import { fetchUserInfo } from "~/utils/fetchUserInfo";
+import type { User } from "~/models/User";
 
-export const useUserStore = defineStore('user', () => {
-    const user = ref<User>();
+export const useUserStore = defineStore("user", () => {
+	const user = ref<User>();
 
-    const setUserInfo = async (id: string) => {
-        user.value = await fetchUserInfo(id) as User;
-    }
+	const setUserInfo = async (id: string) => {
+		user.value = (await fetchUserInfo(id)) as User;
+	};
 
-    return {user, setUserInfo};
-})
+	return { user, setUserInfo };
+});

@@ -6,15 +6,13 @@
 </template>
 
 <script setup lang="ts">
-import { BookResponse } from "~~/models/BookResponse";
+import type { BookResponse } from "~/models/Book";
 
 const route = useRoute();
 const requestError = ref<boolean>(false);
 const getBook = async () => {
 	try {
-		const { data, error } = await useFetch(
-			`http://localhost:8080/books/${route.params.id}`
-		);
+		const { data, error } = await useFetch(`/api/books/${route.params.id}`);
 
 		if (error.value) {
 			throw new Error(error.value.stack);

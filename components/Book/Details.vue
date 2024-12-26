@@ -1,22 +1,18 @@
 <template>
 	<div class="details">
 		<BookDetail :info="isbn">
-			<BarcodeIcon title="ISBN 13" />
+			<Icon name="fa6-solid:barcode" title="ISBN 13" />
 		</BookDetail>
 		<BookDetail :info="pageCount + ' pages'">
-			<BookOpenPageVariantIcon title="Page count" />
+			<Icon name="fa6-solid:book-open" title="Page count" />
 		</BookDetail>
 		<BookDetail :info="getCountryName(country)">
-			<EarthIcon title="Country" />
+			<Icon name="fa6-solid:earth-americas" title="Country" />
 		</BookDetail>
 	</div>
 </template>
 
 <script setup lang="ts">
-import BarcodeIcon from "vue-material-design-icons/Barcode.vue";
-import BookOpenPageVariantIcon from "vue-material-design-icons/BookOpenPageVariant.vue";
-import EarthIcon from "vue-material-design-icons/Earth.vue";
-
 const { country, isbn, pageCount } = defineProps({
 	country: String,
 	isbn: String,

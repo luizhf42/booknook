@@ -6,23 +6,18 @@
 			:listPrice="listPrice"
 		/>
 		<button class="text-thumb-up">
-			<ThumbUpOutlineIcon v-if="isLikedBook !== true" @click="likeBook" />
-			<ThumbUpIcon v-else @click="markReviewAsNull" />
+			<Icon name="fa6-regular:thumbs-up" v-if="isLikedBook !== true" @click="likeBook" />
+			<Icon name="fa6-solid:thumbs-up" v-else @click="markReviewAsNull" />
 		</button>
 
 		<button class="text-thumb-down">
-			<ThumbDownOutlineIcon v-if="isLikedBook !== false" @click="dislikeBook" />
-			<ThumbDownIcon v-else @click="markReviewAsNull" />
+			<Icon name="fa6-regular:thumbs-down" v-if="isLikedBook !== false" @click="dislikeBook" />
+			<Icon name="fa6-solid:thumbs-down"  v-else @click="markReviewAsNull" />
 		</button>
 	</div>
 </template>
 
 <script setup lang="ts">
-import ThumbUpIcon from "vue-material-design-icons/ThumbUp.vue";
-import ThumbUpOutlineIcon from "vue-material-design-icons/ThumbUpOutline.vue";
-import ThumbDownIcon from "vue-material-design-icons/ThumbDown.vue";
-import ThumbDownOutlineIcon from "vue-material-design-icons/ThumbDownOutline.vue";
-
 const { buyLink, isForSale, listPrice } = defineProps({
 	buyLink: String,
 	isForSale: Boolean,

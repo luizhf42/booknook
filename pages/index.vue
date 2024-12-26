@@ -1,75 +1,76 @@
 <template>
-  <main>
-    <h1>BookNook</h1>
-    <h2>Where books unite people.</h2>
+	<main>
+		<h1>BookNook</h1>
+		<h2>Where books unite people.</h2>
 
-    <GoogleLogin
-        clientId="1030391838378-6ohfffk4poldo1f08192q5unvsg6ih26.apps.googleusercontent.com"
-        :callback="callback"
-    />
+		<ClientOnly>
+			<GoogleLogin
+				clientId="1030391838378-6ohfffk4poldo1f08192q5unvsg6ih26.apps.googleusercontent.com"
+				:callback="callback"
+			/>
+		</ClientOnly>
 
-    <CreateAccount
-        v-if="showCreateAccount"
-        @create-account="(username = '') => createAccount(username)"
-        @cancel="() => (showCreateAccount = false)"
-    />
-  </main>
+		<CreateAccount
+			v-if="showCreateAccount"
+			@create-account="(username = '') => createAccount(username)"
+			@cancel="() => (showCreateAccount = false)"
+		/>
+	</main>
 </template>
 
 <script setup lang="ts">
-import {decodeCredential, GoogleLogin} from "vue3-google-login";
-import {useUserStore} from "~/store/user";
-import {storeToRefs} from "pinia";
-import {GoogleUserData} from "~/models/User";
+import { decodeCredential, GoogleLogin } from "vue3-google-login";
+import { useUserStore } from "~/store/user";
+import { storeToRefs } from "pinia";
+import type { GoogleUserData } from "~/models/User";
 // import { v4 as getUUID } from "uuid";
 
 const showCreateAccount = ref(false);
 const googleUserData = ref<GoogleUserData>();
 const userStore = useUserStore();
-const {setUserInfo} = userStore;
-const {user} = storeToRefs(userStore);
+const { setUserInfo } = userStore;
+const { user } = storeToRefs(userStore);
 
 const callback = async (response: { credential: string }) => {
-  googleUserData.value = decodeCredential(response.credential) as GoogleUserData;
-  if (await userExists(googleUserData.value.sub)) {
-    await setUserInfo(googleUserData.value.sub)
-    navigateTo("/dashboard")
-  } else showCreateAccount.value = true;
+	googleUserData.value = decodeCredential(
+		response.credential
+	) as GoogleUserData;
+	if (await userExists(googleUserData.value.sub)) {
+		await setUserInfo(googleUserData.value.sub);
+		navigateTo("/dashboard");
+	} else showCreateAccount.value = true;
 };
 
 const createAccount = async (username: string) => {
-  const {id, name, picture} = user.value!;
-  try {
-    const {error} = await useFetch(
-        "http://localhost:8080/users/create",
-        {
-          method: "POST",
-          body: {id, name, picture, username},
-        }
-    );
+	const { id, name, picture } = user.value!;
+	try {
+		const { error } = await useFetch("http://localhost:8080/users/create", {
+			method: "POST",
+			body: { id, name, picture, username },
+		});
 
-    if (error.value) {
-      // TODO: Handle error
-      throw new Error(error.value.stack);
-    }
+		if (error.value) {
+			// TODO: Handle error
+			throw new Error(error.value.stack);
+		}
 
-    navigateTo("/dashboard");
-  } catch (err) {
-    console.error(err);
-  }
+		navigateTo("/dashboard");
+	} catch (err) {
+		console.error(err);
+	}
 };
 </script>
 
 <style lang="postcss" scoped>
 main {
-  @apply bg-brown-bg text-white h-full flex flex-col items-center justify-center;
+	@apply bg-brown-bg text-white h-full flex flex-col items-center justify-center;
 
-  h1 {
-    @apply text-6xl font-bold;
-  }
+	h1 {
+		@apply text-6xl font-bold;
+	}
 
-  h2 {
-    @apply text-4xl mb-4;
-  }
+	h2 {
+		@apply text-4xl mb-4;
+	}
 }
 </style>

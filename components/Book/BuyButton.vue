@@ -29,9 +29,9 @@ a {
 	&.for-sale {
 		@apply bg-blue-500;
 
-    &:hover {
-      @apply bg-blue-600;
-    }
+		&:hover {
+			@apply bg-blue-600;
+		}
 	}
 
 	&.not-for-sale {

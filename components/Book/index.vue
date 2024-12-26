@@ -9,14 +9,14 @@
 				:publisher="publisher"
 				:title="title"
 			/>
-			<BookDetails 
+			<BookDetails
 				:country="country"
 				:isbn="industryIdentifiers?.[1].identifier"
 				:pageCount="pageCount"
 			/>
 		</article>
 	</section>
-	
+
 	<BookButtons
 		:buyLink="buyLink"
 		:isForSale="isForSale"
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { VolumeInfo, SaleInfo, BookResponse } from "~~/models/BookResponse";
+import type { VolumeInfo, SaleInfo, BookResponse } from "~/models/Book";
 
 const { book } = defineProps({
 	book: Object,
