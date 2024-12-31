@@ -12,6 +12,7 @@
     "@iconify-json/fa6-solid": "^1.2.3",
     "@nuxt/icon": "1.10.3",
     "@nuxtjs/tailwindcss": "^6.4.1",
+    "@types/node": "^22.10.2",
     "nuxt": "^3.2.3"
   },
   "dependencies": {
