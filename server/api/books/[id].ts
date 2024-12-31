@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
 	const id = getRouterParam(event, "id");
 
 	if (!id) {
-		return { statusCode: 400, message: "Book ID is required" };
+		throw createError({ statusCode: 400, message: "Book ID is required" });
 	}
 
 	try {
@@ -19,11 +19,17 @@ export default defineEventHandler(async (event) => {
 		);
 
 		if (!response) {
-			return { statusCode: 404, message: `Book of ID ${id} not found` };
+			throw createError({
+				statusCode: 404,
+				message: `Book of ID ${id} not found.`,
+			});
 		}
 
 		return response;
 	} catch (error) {
-		return { statusCode: 500, message: "Error fetching book details" };
+		throw createError({
+			statusCode: 500,
+			message: "Error fetching book details",
+		});
 	}
 });
