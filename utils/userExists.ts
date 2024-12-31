@@ -1,12 +1,15 @@
 import { fetchUserInfo } from "~/utils/fetchUserInfo";
 
 export const userExists = async (id: string) => {
-	let userExists: boolean = false;
 	try {
-		const user = await fetchUserInfo(id);
-		userExists = !!user;
-	} catch (error) {
-		throw new Error(error as string);
+		await fetchUserInfo(id);
+		return true;
+	} catch (error: any) {
+		if (error.message.includes("not found")) return false;
+
+		throw new Error(
+			error.message ||
+				"An unexpected error occurred while checking user existence."
+		);
 	}
-	return userExists;
 };

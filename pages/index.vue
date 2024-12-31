@@ -21,39 +21,34 @@
 <script setup lang="ts">
 import { decodeCredential, GoogleLogin } from "vue3-google-login";
 import { useUserStore } from "~/store/user";
-import { storeToRefs } from "pinia";
 import type { GoogleUserData } from "~/models/User";
-// import { v4 as getUUID } from "uuid";
 
 const showCreateAccount = ref(false);
 const googleUserData = ref<GoogleUserData>();
 const userStore = useUserStore();
 const { setUserInfo } = userStore;
-const { user } = storeToRefs(userStore);
 
 const callback = async (response: { credential: string }) => {
 	googleUserData.value = decodeCredential(
 		response.credential
 	) as GoogleUserData;
+
 	if (await userExists(googleUserData.value.sub)) {
-		await setUserInfo(googleUserData.value.sub);
+		const userInfo = await fetchUserInfo(googleUserData.value.sub);
+		setUserInfo(userInfo);
 		navigateTo("/dashboard");
 	} else showCreateAccount.value = true;
 };
 
 const createAccount = async (username: string) => {
-	const { id, name, picture } = user.value!;
+	const { sub, name, picture } = googleUserData.value!;
+	const user = { id: sub, name, picture, username };
 	try {
-		const { error } = await useFetch("http://localhost:8080/users/create", {
+		await $fetch("api/users/create", {
 			method: "POST",
-			body: { id, name, picture, username },
+			body: user,
 		});
-
-		if (error.value) {
-			// TODO: Handle error
-			throw new Error(error.value.stack);
-		}
-
+		setUserInfo(user);
 		navigateTo("/dashboard");
 	} catch (err) {
 		console.error(err);
